@@ -1,15 +1,15 @@
-name: Deploy to GitHub Pages   # 워크플로 이름, 아무거나 OK
+name: Deploy to GitHub Pages   
 
-# 고아(Queued) 런 자동 취소
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 on:
   push:
-    branches: ["main"]         # 배포용 브랜치
+    branches: ["main"]         
 
-# GitHub Pages에 필요한 권한
+
 permissions:
   contents: read
   pages: write
@@ -17,18 +17,18 @@ permissions:
 
 jobs:
   build:
-    runs-on: self-hosted       # ← 방금 등록한 러너로 실행
+    runs-on: self-hosted       
     steps:
       - uses: actions/checkout@v4
 
-      # 리포 루트(이미지 포함) 전체를 아티팩트로
+  
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .              # 점(.) = 현재 폴더
+          path: .              
 
   deploy:
-    runs-on: self-hosted       # ← 역시 self-hosted
+    runs-on: self-hosted       
     needs: build
     environment:
       name: github-pages
