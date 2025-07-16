@@ -1,3 +1,1 @@
-News Animus
- 
-  
+News.png
